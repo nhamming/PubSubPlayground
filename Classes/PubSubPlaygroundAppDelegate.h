@@ -7,12 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+@class XMPPStream;
 
 @interface PubSubPlaygroundAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
+	XMPPStream *xmppStream;
+	NSString *password;
+	BOOL allowSelfSignedCertificates;
+	BOOL allowSSLHostNameMismatch;
+	BOOL isOpen;
+	UIWindow *window;
 }
 
+@property (nonatomic, readonly) XMPPStream *xmppStream;
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+
+- (IBAction) sendButtonPressed;
 
 @end
 

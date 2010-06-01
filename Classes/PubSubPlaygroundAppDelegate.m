@@ -7,26 +7,174 @@
 //
 
 #import "PubSubPlaygroundAppDelegate.h"
+#import <CFNetwork/CFNetwork.h>
+#import "XMPP.h"
+#import "XMPPStream.h"
+#import "XMPPIQ+TelemonitoringPubSub.h"
 
 @implementation PubSubPlaygroundAppDelegate
-
+@synthesize xmppStream;
 @synthesize window;
 
+#pragma mark -
+- (void)dealloc {
+	[xmppStream removeDelegate:self];
+	[xmppStream disconnect];
+	[xmppStream release];
+	[password release];
+    [window release];
+    [super dealloc];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-
-    // Override point for customization after application launch
+	//setup the stream
+	xmppStream = [[XMPPStream alloc] init];
+	[xmppStream addDelegate:self];
+	[xmppStream setHostName:@"jabber.telemonitoring.ca"];
+	[xmppStream setHostPort:5222];
+	[xmppStream setMyJID:[XMPPJID jidWithString:@"device@jabber.telemonitoring.ca"]];
+	password = @"spamhead";
+	
+	NSError *error = nil;
+	if (![xmppStream connect:&error]) {
+		NSLog(@"Error connecting publisher stream: %@", error);
+	}
 	
     [window makeKeyAndVisible];
 	
 	return YES;
 }
 
-
-- (void)dealloc {
-    [window release];
-    [super dealloc];
+- (IBAction) sendButtonPressed {
+	XMPPIQ *pubSubTest = [XMPPIQ pubSubTest];
+	NSLog(@"xmppStream in root view controller: %@",self.xmppStream);
+	if ([self.xmppStream isConnected]) {
+		NSLog(@"sending IQ");
+		[self.xmppStream sendElement:pubSubTest];
+	} else {
+		NSLog(@"the stream is not connected");
+	}	
 }
 
+#pragma mark -
+#pragma mark Custom Methods
+- (void)goOnline
+{
+	NSXMLElement *presence = [NSXMLElement elementWithName:@"presence"];
+	
+	[[self xmppStream] sendElement:presence];
+}
+
+- (void)goOffline
+{
+	NSXMLElement *presence = [NSXMLElement elementWithName:@"presence"];
+	[presence addAttributeWithName:@"type" stringValue:@"unavailable"];
+	
+	[[self xmppStream] sendElement:presence];
+}
+
+#pragma mark -
+#pragma mark XMPPStream Delegate
+- (void)xmppStream:(XMPPStream *)sender willSecureWithSettings:(NSMutableDictionary *)settings {
+	NSLog(@"---------- xmppStream:willSecureWithSettings: ----------");
+	
+	if (allowSelfSignedCertificates) {
+		[settings setObject:[NSNumber numberWithBool:YES] forKey:(NSString *)kCFStreamSSLAllowsAnyRoot];
+	}
+	
+	if (allowSSLHostNameMismatch) {
+		[settings setObject:[NSNull null] forKey:(NSString *)kCFStreamSSLPeerName];
+	}
+	else {
+		// Google does things incorrectly (does not conform to RFC).
+		// Because so many people ask questions about this (assume xmpp framework is broken),
+		// I've explicitly added code that shows how other xmpp clients "do the right thing"
+		// when connecting to a google server (gmail, or google apps for domains).
+		
+		NSString *expectedCertName = nil;
+		NSString *serverDomain = xmppStream.hostName;
+		NSString *virtualDomain = [xmppStream.myJID domain];
+		
+		if ([serverDomain isEqualToString:@"talk.google.com"]) {
+			if ([virtualDomain isEqualToString:@"gmail.com"]) {
+				expectedCertName = virtualDomain;
+			}
+			else {
+				expectedCertName = serverDomain;
+			}
+		}
+		else {
+			expectedCertName = serverDomain;
+		}
+		
+		[settings setObject:expectedCertName forKey:(NSString *)kCFStreamSSLPeerName];
+	}
+}
+
+- (void)xmppStreamDidSecure:(XMPPStream *)sender {
+	NSLog(@"---------- xmppStreamDidSecure: ----------");
+}
+
+- (void)xmppStreamDidConnect:(XMPPStream *)sender {
+	NSLog(@"---------- xmppStreamDidConnect: ----------");
+	
+	isOpen = YES;
+	
+	NSError *error = nil;
+	if (![[self xmppStream] authenticateWithPassword:password error:&error]) {
+		NSLog(@"Error authenticating: %@", error);
+	}
+}
+
+- (void)xmppStreamDidAuthenticate:(XMPPStream *)sender {
+	NSLog(@"---------- xmppStreamDidAuthenticate: ----------");
+	[self goOnline];
+}
+
+- (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error {
+	NSLog(@"---------- xmppStream:didNotAuthenticate: ----------");
+}
+
+- (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq {
+	NSLog(@"---------- xmppStream:didReceiveIQ: ----------");
+	return NO;
+}
+
+- (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message {
+	NSLog(@"---------- xmppStream:didReceiveMessage: ----------");
+	NSError *error = nil;
+	DDXMLElement *elements = [[[DDXMLElement alloc] initWithXMLString:[message XMLString] error:&error] autorelease];
+	while (elements) {
+		NSAssert(!error,@"error converting the message to XML");
+		DDXMLElement *valueElement = [elements elementForName:@"value"];
+		if (valueElement) {
+			NSString *valueElementContents = [valueElement stringValue];
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Received Message" message:[NSString stringWithFormat:@"%@",valueElementContents] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[alert show];		
+			break;
+		}
+		elements = (DDXMLElement*)[elements nextNode];
+	}
+}
+
+- (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence {
+	NSLog(@"---------- xmppStream:didReceivePresence: ----------");
+}
+
+- (void)xmppStream:(XMPPStream *)sender didReceiveError:(id)error {
+	NSLog(@"---------- xmppStrea:didReceiveError: ----------");
+}
+
+- (void)xmppStreamDidDisconnect:(XMPPStream *)sender {
+	NSLog(@"---------- xmppStreamDidDisconnect: ----------");
+	
+	if (!isOpen) {
+		NSLog(@"Unable to connect to server. Check xmppStream.hostName");
+	}
+}
+
+- (void)xmppStream:(XMPPStream *)sender willSendIQ:(XMPPIQ *)iq {
+	NSLog(@"---------- xmppStreamDidSendIQ: ----------");
+}
 
 @end

@@ -142,8 +142,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				48C4CD0B11B59D1C00976CF5 /* Categories */,
 				48C4CD2411B59DCF00976CF5 /* Third Party Libraries */,
+				48C4CD0B11B59D1C00976CF5 /* Categories */,
 				1D3623240D0F684500981E51 /* PubSubPlaygroundAppDelegate.h */,
 				1D3623250D0F684500981E51 /* PubSubPlaygroundAppDelegate.m */,
 			);
@@ -494,7 +494,8 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.3;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
 		};
