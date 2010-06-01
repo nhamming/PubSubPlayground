@@ -37,6 +37,12 @@
 		48C4CD6411B59E6300976CF5 /* XMPPRosterCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C4CD5E11B59E6300976CF5 /* XMPPRosterCoreDataStorage.m */; };
 		48C4CD6511B59E6300976CF5 /* XMPPUserCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C4CD6011B59E6300976CF5 /* XMPPUserCoreDataStorage.m */; };
 		48C4CD6611B59E6300976CF5 /* XMPPResourceCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C4CD6211B59E6300976CF5 /* XMPPResourceCoreDataStorage.m */; };
+		48C4CDB311B59EE100976CF5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C4CDB211B59EE100976CF5 /* CoreData.framework */; };
+		48C4CDB711B59EEE00976CF5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C4CDB611B59EEE00976CF5 /* CFNetwork.framework */; };
+		48C4CDBB11B59EF800976CF5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C4CDBA11B59EF800976CF5 /* SystemConfiguration.framework */; };
+		48C4CDBF11B59F0900976CF5 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C4CDBE11B59F0900976CF5 /* libxml2.dylib */; };
+		48C4CDC611B5A07800976CF5 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C4CDC511B5A07800976CF5 /* libidn.a */; };
+		48C4CDD711B5A13B00976CF5 /* XMPPModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C4CDD611B5A13B00976CF5 /* XMPPModule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +110,13 @@
 		48C4CD6011B59E6300976CF5 /* XMPPUserCoreDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPUserCoreDataStorage.m; sourceTree = "<group>"; };
 		48C4CD6111B59E6300976CF5 /* XMPPResourceCoreDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPResourceCoreDataStorage.h; sourceTree = "<group>"; };
 		48C4CD6211B59E6300976CF5 /* XMPPResourceCoreDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPResourceCoreDataStorage.m; sourceTree = "<group>"; };
+		48C4CDB211B59EE100976CF5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		48C4CDB611B59EEE00976CF5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		48C4CDBA11B59EF800976CF5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		48C4CDBE11B59F0900976CF5 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		48C4CDC511B5A07800976CF5 /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
+		48C4CDD511B5A13B00976CF5 /* XMPPModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPModule.h; sourceTree = "<group>"; };
+		48C4CDD611B5A13B00976CF5 /* XMPPModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPModule.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* PubSubPlayground-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PubSubPlayground-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +128,11 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				48C4CDB311B59EE100976CF5 /* CoreData.framework in Frameworks */,
+				48C4CDB711B59EEE00976CF5 /* CFNetwork.framework in Frameworks */,
+				48C4CDBB11B59EF800976CF5 /* SystemConfiguration.framework in Frameworks */,
+				48C4CDBF11B59F0900976CF5 /* libxml2.dylib in Frameworks */,
+				48C4CDC611B5A07800976CF5 /* libidn.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +194,11 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+				48C4CDB211B59EE100976CF5 /* CoreData.framework */,
+				48C4CDB611B59EEE00976CF5 /* CFNetwork.framework */,
+				48C4CDBA11B59EF800976CF5 /* SystemConfiguration.framework */,
+				48C4CDBE11B59F0900976CF5 /* libxml2.dylib */,
+				48C4CDC511B5A07800976CF5 /* libidn.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -298,6 +321,8 @@
 				48C4CD4811B59E2D00976CF5 /* XMPPPresence.m */,
 				48C4CD4911B59E2D00976CF5 /* XMPPReconnect.h */,
 				48C4CD4A11B59E2D00976CF5 /* XMPPReconnect.m */,
+				48C4CDD511B5A13B00976CF5 /* XMPPModule.h */,
+				48C4CDD611B5A13B00976CF5 /* XMPPModule.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -416,6 +441,7 @@
 				48C4CD6411B59E6300976CF5 /* XMPPRosterCoreDataStorage.m in Sources */,
 				48C4CD6511B59E6300976CF5 /* XMPPUserCoreDataStorage.m in Sources */,
 				48C4CD6611B59E6300976CF5 /* XMPPResourceCoreDataStorage.m in Sources */,
+				48C4CDD711B5A13B00976CF5 /* XMPPModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +458,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PubSubPlayground_Prefix.pch;
 				INFOPLIST_FILE = "PubSubPlayground-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = PubSubPlayground;
 			};
 			name = Debug;
@@ -444,6 +474,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PubSubPlayground_Prefix.pch;
 				INFOPLIST_FILE = "PubSubPlayground-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = PubSubPlayground;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -457,6 +491,8 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.1.3;
 			};
