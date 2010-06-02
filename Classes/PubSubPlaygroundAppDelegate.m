@@ -46,14 +46,15 @@
 }
 
 - (IBAction) sendButtonPressed {
+
 	XMPPIQ *pubSubTest = [XMPPIQ pubSubTest];
-	NSLog(@"xmppStream in root view controller: %@",self.xmppStream);
+	
 	if ([self.xmppStream isConnected]) {
 		NSLog(@"sending IQ");
 		[self.xmppStream sendElement:pubSubTest];
 	} else {
 		NSLog(@"the stream is not connected");
-	}	
+	}
 }
 
 #pragma mark -

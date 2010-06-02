@@ -1,0 +1,45 @@
+<ContinuityOfCareRecord xmlns="urn:astm-org:CCR">
+	<Language>
+		<Text>English</Text>
+		<Code>
+			<Value>en</Value>
+			<CodingSystem>ISO-639-1</CodingSystem>
+		</Code>
+	</Language>
+	<Version>V1.0</Version>
+	<Body>
+		<Results>
+			<Result>
+				<Source>
+					<Actor>
+						<ActorID><!-- USERNAME USERNAME USERNAME USERNAME USERNAME --></ActorID>
+						<ActorRole>
+							<Text>Patient</Text>
+						</ActorRole>
+					</Actor>
+				</Source>
+				<Test>
+					<DateTime>
+						<Type>
+							<Text>Collection start date</Text>
+						</Type>
+						<ExactDateTime><!-- TAKENTIME TAKENTIME TAKENTIME TAKENTIME TAKENTIME --></ExactDateTime>
+					</DateTime>
+					<Description>
+						<Text>Blood Sugar</Text>
+						<Code>
+							<Value>2341-6</Value>
+							<CodingSystem>LOINC</CodingSystem>
+						</Code>
+					</Description>
+					<TestResult>
+						<Value><!-- VALUE VALUE VALUE VALUE VALUE --></Value>
+						<Units>
+							<Unit><!-- UNIT UNIT UNIT UNIT UNIT --></Unit>
+						</Units>
+					</TestResult>
+				</Test>
+			</Result>
+		</Results>
+	</Body>
+</ContinuityOfCareRecord>	

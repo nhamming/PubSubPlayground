@@ -12,6 +12,7 @@
 @interface XMPPIQ (XMPPIQ_TelemonitoringPubSub)
 
 + (XMPPIQ*) pubSubTest;
-+ (XMPPIQ*) createPuBSubIQWithValue:(NSString*)value;
++ (XMPPIQ*) createPubSubIQWithValue:(NSString*)value;
++ (XMPPIQ*) createPubSubIQWithCCR;
 
 @end
