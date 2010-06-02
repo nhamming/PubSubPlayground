@@ -142,18 +142,16 @@
 
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message {
 	NSLog(@"---------- xmppStream:didReceiveMessage: ----------");
-	NSError *error = nil;
-	DDXMLElement *elements = [[[DDXMLElement alloc] initWithXMLString:[message XMLString] error:&error] autorelease];
-	while (elements) {
-		NSAssert(!error,@"error converting the message to XML");
-		DDXMLElement *valueElement = [elements elementForName:@"value"];
+	NSLog(@"message: %@",message);
+	while (message) {
+		DDXMLElement *valueElement = [message elementForName:@"value"];
 		if (valueElement) {
 			NSString *valueElementContents = [valueElement stringValue];
 			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Received Message" message:[NSString stringWithFormat:@"%@",valueElementContents] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 			[alert show];		
 			break;
 		}
-		elements = (DDXMLElement*)[elements nextNode];
+		message	= (XMPPMessage*)[message nextNode]; 
 	}
 }
 
