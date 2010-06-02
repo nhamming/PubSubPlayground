@@ -30,10 +30,10 @@
 	//setup the stream
 	xmppStream = [[XMPPStream alloc] init];
 	[xmppStream addDelegate:self];
-	[xmppStream setHostName:@"hostname"];
+	[xmppStream setHostName:@"jabber.telemonitoring.ca"];
 	[xmppStream setHostPort:5222];
-	[xmppStream setMyJID:[XMPPJID jidWithString:@"userJID"]];
-	password = @"password";
+	[xmppStream setMyJID:[XMPPJID jidWithString:@"device@jabber.telemonitoring.ca"]];
+	password = @"spamhead";
 	
 	NSError *error = nil;
 	if (![xmppStream connect:&error]) {
