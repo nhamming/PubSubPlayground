@@ -16,7 +16,7 @@
 		4807FCC411B6B289000CF7BB /* GlucoseReadingCCRTemplate.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4807FCC311B6B289000CF7BB /* GlucoseReadingCCRTemplate.xml */; };
 		4807FCD511B6B373000CF7BB /* NSMutableString+ReplacementExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4807FCD411B6B373000CF7BB /* NSMutableString+ReplacementExtensions.m */; };
 		4807FCDA11B6B393000CF7BB /* NSDate+ISO8601FormatExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4807FCD911B6B393000CF7BB /* NSDate+ISO8601FormatExtensions.m */; };
-		48C4CD0911B59D0400976CF5 /* XMPPIQ+TelemonitoringPubSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C4CD0811B59D0400976CF5 /* XMPPIQ+TelemonitoringPubSub.m */; };
+		48C4CD0911B59D0400976CF5 /* XMPPIQ+PubSubTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C4CD0811B59D0400976CF5 /* XMPPIQ+PubSubTest.m */; };
 		48C4CD1811B59D5200976CF5 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C4CD0F11B59D5200976CF5 /* NSStringAdditions.m */; };
 		48C4CD1911B59D5200976CF5 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C4CD1311B59D5200976CF5 /* DDXMLDocument.m */; };
 		48C4CD1A11B59D5200976CF5 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C4CD1511B59D5200976CF5 /* DDXMLElement.m */; };
@@ -63,8 +63,8 @@
 		4807FCD411B6B373000CF7BB /* NSMutableString+ReplacementExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+ReplacementExtensions.m"; sourceTree = "<group>"; };
 		4807FCD811B6B393000CF7BB /* NSDate+ISO8601FormatExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ISO8601FormatExtensions.h"; sourceTree = "<group>"; };
 		4807FCD911B6B393000CF7BB /* NSDate+ISO8601FormatExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ISO8601FormatExtensions.m"; sourceTree = "<group>"; };
-		48C4CD0711B59D0400976CF5 /* XMPPIQ+TelemonitoringPubSub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMPPIQ+TelemonitoringPubSub.h"; sourceTree = "<group>"; };
-		48C4CD0811B59D0400976CF5 /* XMPPIQ+TelemonitoringPubSub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XMPPIQ+TelemonitoringPubSub.m"; sourceTree = "<group>"; };
+		48C4CD0711B59D0400976CF5 /* XMPPIQ+PubSubTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMPPIQ+PubSubTest.h"; sourceTree = "<group>"; };
+		48C4CD0811B59D0400976CF5 /* XMPPIQ+PubSubTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XMPPIQ+PubSubTest.m"; sourceTree = "<group>"; };
 		48C4CD0E11B59D5200976CF5 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		48C4CD0F11B59D5200976CF5 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
 		48C4CD1011B59D5200976CF5 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
@@ -223,8 +223,8 @@
 		48C4CD0B11B59D1C00976CF5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				48C4CD0711B59D0400976CF5 /* XMPPIQ+TelemonitoringPubSub.h */,
-				48C4CD0811B59D0400976CF5 /* XMPPIQ+TelemonitoringPubSub.m */,
+				48C4CD0711B59D0400976CF5 /* XMPPIQ+PubSubTest.h */,
+				48C4CD0811B59D0400976CF5 /* XMPPIQ+PubSubTest.m */,
 				4807FCD311B6B373000CF7BB /* NSMutableString+ReplacementExtensions.h */,
 				4807FCD411B6B373000CF7BB /* NSMutableString+ReplacementExtensions.m */,
 				4807FCD811B6B393000CF7BB /* NSDate+ISO8601FormatExtensions.h */,
@@ -439,7 +439,7 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* PubSubPlaygroundAppDelegate.m in Sources */,
-				48C4CD0911B59D0400976CF5 /* XMPPIQ+TelemonitoringPubSub.m in Sources */,
+				48C4CD0911B59D0400976CF5 /* XMPPIQ+PubSubTest.m in Sources */,
 				48C4CD1811B59D5200976CF5 /* NSStringAdditions.m in Sources */,
 				48C4CD1911B59D5200976CF5 /* DDXMLDocument.m in Sources */,
 				48C4CD1A11B59D5200976CF5 /* DDXMLElement.m in Sources */,

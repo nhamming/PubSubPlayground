@@ -1,37 +1,43 @@
 //
-//  XMPPIQ+TelemonitoringPubSub.m
+//  XMPPIQ+PubSubTest.m
 //  iPhoneXMPP
 //
 //  Created by Nathaniel Hamming on 10-06-01.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "XMPPIQ+TelemonitoringPubSub.h"
+#import "XMPPIQ+PubSubTest.h"
 #import "XMPPJID.h"
 #import "NSXMLElementAdditions.h"
 #import "NSMutableString+ReplacementExtensions.h"
 #import "NSDate+ISO8601FormatExtensions.h"
 
-@implementation XMPPIQ (XMPPIQ_TelemonitoringPubSub)
+@implementation XMPPIQ (XMPPIQ_PubSubTest)
 
-+ (XMPPIQ*)pubSubTest {
++ (XMPPIQ*) pubSubTest {
 //	return [self createPubSubIQWithValue:[NSString stringWithFormat:@"(iPhone) sent: %@",[NSDate date]]];
 	return [self createPubSubIQWithCCR];
 }
 
-+ (XMPPIQ*) createPubSubIQWithValue:(NSString*)value {
++ (XMPPIQ*) createPubSubIQWithItemElemnt: (DDXMLElement*)itemElement {
 	DDXMLElement *childElement = [NSXMLElement elementWithName:@"pubsub" xmlns:@"http://jabber.org/protocol/pubsub"];
 	DDXMLElement *publishElement = [[[DDXMLElement alloc] initWithName:@"publish"] autorelease];
 	[publishElement addAttributeWithName:@"node" stringValue:@"/home/jabber.telemonitoring.ca/device/readings"];
 	[childElement addChild:publishElement];
-	[(DDXMLElement*)[childElement nextNode] addChild:[DDXMLNode elementWithName:@"item"]];
-	[(DDXMLElement*)[[childElement nextNode] nextNode] addChild:[DDXMLNode elementWithName:@"value" stringValue:value]];
+	[(DDXMLElement*)[childElement nextNode] addChild:itemElement];
 	
-	XMPPIQ *xmlIQ = [XMPPIQ iqWithType:@"set" to:[XMPPJID jidWithString:@"pubsubJID"]];
+	XMPPIQ *xmlIQ = [XMPPIQ iqWithType:@"set" to:[XMPPJID jidWithString:@"pubsub.jabber.telemonitoring.ca"]];
 	[xmlIQ addChild:childElement];
 	NSAssert(xmlIQ,@"xmlIQ not created");
 	
-	return xmlIQ;
+	return xmlIQ;	
+}
+
++ (XMPPIQ*) createPubSubIQWithValue:(NSString*)value {
+	DDXMLElement *itemElement = [DDXMLNode elementWithName:@"item"];
+	[itemElement addChild:[DDXMLNode elementWithName:@"value" stringValue:value]];
+	
+	return [self createPubSubIQWithItemElemnt:itemElement];
 }
 
 + (XMPPIQ*) createPubSubIQWithCCR {
@@ -48,21 +54,13 @@
 	[resultString replace: kValueReplacementTarget with: @"9.0"];
 	[resultString replace: kUnitReplacementTarget with: @"mmol/l"];
 	[resultString replace: kDateReplacementTarget with: [[NSDate date] formattedAsISO8601]];
-	DDXMLElement *resultStringXML = [[[DDXMLElement alloc] initWithXMLString:resultString error:&error] autorelease];
+	DDXMLElement *ccrXML = [[[DDXMLElement alloc] initWithXMLString:resultString error:&error] autorelease];
 	NSAssert(!error,@"resultStringXML not created");
 	
-	DDXMLElement *childElement = [NSXMLElement elementWithName:@"pubsub" xmlns:@"http://jabber.org/protocol/pubsub"];
-	DDXMLElement *publishElement = [[[DDXMLElement alloc] initWithName:@"publish"] autorelease];
-	[publishElement addAttributeWithName:@"node" stringValue:@"/home/jabber.telemonitoring.ca/device/readings"];
-	[childElement addChild:publishElement];
-	[(DDXMLElement*)[childElement nextNode] addChild:[DDXMLNode elementWithName:@"item"]];
-	[(DDXMLElement*)[[childElement nextNode] nextNode] addChild:resultStringXML];
+	DDXMLElement *itemElement = [DDXMLNode elementWithName:@"item"];
+	[itemElement addChild:ccrXML];
 	
-	XMPPIQ *xmlIQ = [XMPPIQ iqWithType:@"set" to:[XMPPJID jidWithString:@"pubsub.jabber.telemonitoring.ca"]];
-	[xmlIQ addChild:childElement];
-	NSAssert(xmlIQ,@"xmlIQ not created");
-	
-	return xmlIQ;
+	return [self createPubSubIQWithItemElemnt:itemElement];
 }
 
 @end
