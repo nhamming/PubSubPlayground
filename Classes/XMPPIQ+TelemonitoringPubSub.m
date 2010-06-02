@@ -20,14 +20,14 @@
 }
 
 + (XMPPIQ*) createPubSubIQWithValue:(NSString*)value {
-	DDXMLElement *childElement = [NSXMLElement elementWithName:@"pubsub" xmlns:@"http://jabber.org/protocol/pubsub"];
+	DDXMLElement *childElement = [NSXMLElement elementWithName:@"pubsub" xmlns:@"pubsubserver"];
 	DDXMLElement *publishElement = [[[DDXMLElement alloc] initWithName:@"publish"] autorelease];
-	[publishElement addAttributeWithName:@"node" stringValue:@"/home/jabber.telemonitoring.ca/device/readings"];
+	[publishElement addAttributeWithName:@"node" stringValue:@"node"];
 	[childElement addChild:publishElement];
 	[(DDXMLElement*)[childElement nextNode] addChild:[DDXMLNode elementWithName:@"item"]];
 	[(DDXMLElement*)[[childElement nextNode] nextNode] addChild:[DDXMLNode elementWithName:@"value" stringValue:value]];
 	
-	XMPPIQ *xmlIQ = [XMPPIQ iqWithType:@"set" to:[XMPPJID jidWithString:@"pubsub.jabber.telemonitoring.ca"]];
+	XMPPIQ *xmlIQ = [XMPPIQ iqWithType:@"set" to:[XMPPJID jidWithString:@"pubsubJID"]];
 	[xmlIQ addChild:childElement];
 	NSAssert(xmlIQ,@"xmlIQ not created");
 	
@@ -51,17 +51,16 @@
 	DDXMLElement *resultStringXML = [[[DDXMLElement alloc] initWithXMLString:resultString error:&error] autorelease];
 	NSAssert(!error,@"resultStringXML not created");
 	
-	DDXMLElement *childElement = [NSXMLElement elementWithName:@"pubsub" xmlns:@"http://jabber.org/protocol/pubsub"];
+	DDXMLElement *childElement = [NSXMLElement elementWithName:@"pubsub" xmlns:@"pubsubserver"];
 	DDXMLElement *publishElement = [[[DDXMLElement alloc] initWithName:@"publish"] autorelease];
-	[publishElement addAttributeWithName:@"node" stringValue:@"/home/jabber.telemonitoring.ca/device/readings"];
+	[publishElement addAttributeWithName:@"node" stringValue:@"node"];
 	[childElement addChild:publishElement];
 	[(DDXMLElement*)[childElement nextNode] addChild:[DDXMLNode elementWithName:@"item"]];
 	[(DDXMLElement*)[[childElement nextNode] nextNode] addChild:resultStringXML];
 	
-	XMPPIQ *xmlIQ = [XMPPIQ iqWithType:@"set" to:[XMPPJID jidWithString:@"pubsub.jabber.telemonitoring.ca"]];
+	XMPPIQ *xmlIQ = [XMPPIQ iqWithType:@"set" to:[XMPPJID jidWithString:@"pubsubJID"]];
 	[xmlIQ addChild:childElement];
 	NSAssert(xmlIQ,@"xmlIQ not created");
-	NSLog(@"xmlIQ: %@",xmlIQ);
 	
 	return xmlIQ;
 }
