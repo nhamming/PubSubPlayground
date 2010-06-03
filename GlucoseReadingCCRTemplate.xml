@@ -12,10 +12,11 @@
 			<Result>
 				<Source>
 					<Actor>
-						<ActorObjectID><!-- DEVICEGUID DEVICEGUID DEVICEGUID DEVICEGUID DEVICEGUID --></ActorObjectID>
-						<ActorID><!-- USERNAME USERNAME USERNAME USERNAME USERNAME --></ActorID>
+						<DeviceID><!-- DEVICEID DEVICEID DEVICEID DEVICEID DEVICEID --></DeviceID>
+						<DeviceName><!-- DEVICENAME DEVICENAME DEVICENAME DEVICENAME DEVICENAME --></DeviceName>
+						<ActorID><!-- ACTORID ACTORID ACTORID ACTORID ACTORID --></ActorID>
 						<ActorRole>
-							<Text>Patient</Text>
+							<Text><!-- ACTORROLE ACTORROLE ACTORROLE ACTORROLE ACTORROLE --></Text>
 						</ActorRole>
 					</Actor>
 				</Source>
@@ -27,9 +28,9 @@
 						<ExactDateTime><!-- TAKENTIME TAKENTIME TAKENTIME TAKENTIME TAKENTIME --></ExactDateTime>
 					</DateTime>
 					<Description>
-						<Text>Blood Sugar</Text>
+						<Text><!-- VITALSIGNTYPE VITALSIGNTYPE VITALSIGNTYPE VITALSIGNTYPE VITALSIGNTYPE --></Text>
 						<Code>
-							<Value>2341-6</Value>
+							<Value><!-- LOINCCODE LOINCCODE LOINCCODE LOINCCODE LOINCCODE --></Value>
 							<CodingSystem>LOINC</CodingSystem>
 						</Code>
 					</Description>
@@ -43,4 +44,4 @@
 			</Result>
 		</Results>
 	</Body>
-</ContinuityOfCareRecord>	
+</ContinuityOfCareRecord>

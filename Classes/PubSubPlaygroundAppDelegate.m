@@ -17,6 +17,7 @@
 @synthesize xmppRoster;
 @synthesize xmppRosterStorage;
 @synthesize window;
+@synthesize navigationController;
 
 #pragma mark -
 - (void)dealloc {
