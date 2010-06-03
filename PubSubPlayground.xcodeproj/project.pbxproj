@@ -18,6 +18,7 @@
 		4807FCDA11B6B393000CF7BB /* NSDate+ISO8601FormatExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4807FCD911B6B393000CF7BB /* NSDate+ISO8601FormatExtensions.m */; };
 		4807FE3511B8045C000CF7BB /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4807FE3411B8045C000CF7BB /* RootViewController.m */; };
 		4807FE5311B806DC000CF7BB /* RootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4807FE5211B806DC000CF7BB /* RootView.xib */; };
+		4807FEDE11B819B6000CF7BB /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4807FEDD11B819B6000CF7BB /* icon.png */; };
 		48C4CD0911B59D0400976CF5 /* XMPPIQ+PubSubTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C4CD0811B59D0400976CF5 /* XMPPIQ+PubSubTest.m */; };
 		48C4CD1811B59D5200976CF5 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C4CD0F11B59D5200976CF5 /* NSStringAdditions.m */; };
 		48C4CD1911B59D5200976CF5 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C4CD1311B59D5200976CF5 /* DDXMLDocument.m */; };
@@ -68,6 +69,7 @@
 		4807FE3311B8045C000CF7BB /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4807FE3411B8045C000CF7BB /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4807FE5211B806DC000CF7BB /* RootView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootView.xib; sourceTree = "<group>"; };
+		4807FEDD11B819B6000CF7BB /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		48C4CD0711B59D0400976CF5 /* XMPPIQ+PubSubTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMPPIQ+PubSubTest.h"; sourceTree = "<group>"; };
 		48C4CD0811B59D0400976CF5 /* XMPPIQ+PubSubTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XMPPIQ+PubSubTest.m"; sourceTree = "<group>"; };
 		48C4CD0E11B59D5200976CF5 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				4807FE5211B806DC000CF7BB /* RootView.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* PubSubPlayground-Info.plist */,
+				4807FEDD11B819B6000CF7BB /* icon.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				4807FCC411B6B289000CF7BB /* GlucoseReadingCCRTemplate.xml in Resources */,
 				4807FE5311B806DC000CF7BB /* RootView.xib in Resources */,
+				4807FEDE11B819B6000CF7BB /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
