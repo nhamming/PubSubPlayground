@@ -12,6 +12,12 @@
 #import "NSMutableString+ReplacementExtensions.h"
 #import "NSDate+ISO8601FormatExtensions.h"
 
+static NSString	*kDeviceGUIDReplacementTarget = @"<!-- DEVICEGUID DEVICEGUID DEVICEGUID DEVICEGUID DEVICEGUID -->";
+static NSString *kUsernameReplacementTarget = @"<!-- USERNAME USERNAME USERNAME USERNAME USERNAME -->";
+static NSString *kValueReplacementTarget = @"<!-- VALUE VALUE VALUE VALUE VALUE -->";
+static NSString *kUnitReplacementTarget = @"<!-- UNIT UNIT UNIT UNIT UNIT -->";
+static NSString *kDateReplacementTarget = @"<!-- TAKENTIME TAKENTIME TAKENTIME TAKENTIME TAKENTIME -->";
+
 @implementation XMPPIQ (XMPPIQ_PubSubTest)
 
 + (XMPPIQ*) pubSubTest {
@@ -41,16 +47,12 @@
 }
 
 + (XMPPIQ*) createPubSubIQWithCCR {
-	static NSString *kUsernameReplacementTarget = @"<!-- USERNAME USERNAME USERNAME USERNAME USERNAME -->";
-	static NSString *kValueReplacementTarget = @"<!-- VALUE VALUE VALUE VALUE VALUE -->";
-	static NSString *kUnitReplacementTarget = @"<!-- UNIT UNIT UNIT UNIT UNIT -->";
-	static NSString *kDateReplacementTarget = @"<!-- TAKENTIME TAKENTIME TAKENTIME TAKENTIME TAKENTIME -->";
-	
 	NSError *error = nil;
 	NSMutableString *resultString = [NSMutableString stringWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"GlucoseReadingCCRTemplate" ofType:@"xml"] encoding:NSUTF8StringEncoding error: &error];
 	NSAssert1(!error, @"Error encountered: %@", error);
 	
-	[resultString replace: kUsernameReplacementTarget with: @"PubSubTest"];
+	[resultString replace: kDeviceGUIDReplacementTarget with:[[UIDevice currentDevice] uniqueIdentifier]];
+	[resultString replace: kUsernameReplacementTarget with: [[UIDevice currentDevice] name]];
 	[resultString replace: kValueReplacementTarget with: @"9.0"];
 	[resultString replace: kUnitReplacementTarget with: @"mmol/l"];
 	[resultString replace: kDateReplacementTarget with: [[NSDate date] formattedAsISO8601]];

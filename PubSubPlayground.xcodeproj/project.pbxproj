@@ -16,6 +16,8 @@
 		4807FCC411B6B289000CF7BB /* GlucoseReadingCCRTemplate.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4807FCC311B6B289000CF7BB /* GlucoseReadingCCRTemplate.xml */; };
 		4807FCD511B6B373000CF7BB /* NSMutableString+ReplacementExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4807FCD411B6B373000CF7BB /* NSMutableString+ReplacementExtensions.m */; };
 		4807FCDA11B6B393000CF7BB /* NSDate+ISO8601FormatExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4807FCD911B6B393000CF7BB /* NSDate+ISO8601FormatExtensions.m */; };
+		4807FE3511B8045C000CF7BB /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4807FE3411B8045C000CF7BB /* RootViewController.m */; };
+		4807FE5311B806DC000CF7BB /* RootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4807FE5211B806DC000CF7BB /* RootView.xib */; };
 		48C4CD0911B59D0400976CF5 /* XMPPIQ+PubSubTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C4CD0811B59D0400976CF5 /* XMPPIQ+PubSubTest.m */; };
 		48C4CD1811B59D5200976CF5 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C4CD0F11B59D5200976CF5 /* NSStringAdditions.m */; };
 		48C4CD1911B59D5200976CF5 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C4CD1311B59D5200976CF5 /* DDXMLDocument.m */; };
@@ -63,6 +65,9 @@
 		4807FCD411B6B373000CF7BB /* NSMutableString+ReplacementExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+ReplacementExtensions.m"; sourceTree = "<group>"; };
 		4807FCD811B6B393000CF7BB /* NSDate+ISO8601FormatExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ISO8601FormatExtensions.h"; sourceTree = "<group>"; };
 		4807FCD911B6B393000CF7BB /* NSDate+ISO8601FormatExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ISO8601FormatExtensions.m"; sourceTree = "<group>"; };
+		4807FE3311B8045C000CF7BB /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4807FE3411B8045C000CF7BB /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4807FE5211B806DC000CF7BB /* RootView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootView.xib; sourceTree = "<group>"; };
 		48C4CD0711B59D0400976CF5 /* XMPPIQ+PubSubTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMPPIQ+PubSubTest.h"; sourceTree = "<group>"; };
 		48C4CD0811B59D0400976CF5 /* XMPPIQ+PubSubTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XMPPIQ+PubSubTest.m"; sourceTree = "<group>"; };
 		48C4CD0E11B59D5200976CF5 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
@@ -152,6 +157,8 @@
 			children = (
 				48C4CD2411B59DCF00976CF5 /* Third Party Libraries */,
 				48C4CD0B11B59D1C00976CF5 /* Categories */,
+				4807FE3311B8045C000CF7BB /* RootViewController.h */,
+				4807FE3411B8045C000CF7BB /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* PubSubPlaygroundAppDelegate.h */,
 				1D3623250D0F684500981E51 /* PubSubPlaygroundAppDelegate.m */,
 			);
@@ -191,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				4807FCC511B6B28C000CF7BB /* XML Template */,
+				4807FE5211B806DC000CF7BB /* RootView.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* PubSubPlayground-Info.plist */,
 			);
@@ -427,6 +435,7 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				4807FCC411B6B289000CF7BB /* GlucoseReadingCCRTemplate.xml in Resources */,
+				4807FE5311B806DC000CF7BB /* RootView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +475,7 @@
 				48C4CDD711B5A13B00976CF5 /* XMPPModule.m in Sources */,
 				4807FCD511B6B373000CF7BB /* NSMutableString+ReplacementExtensions.m in Sources */,
 				4807FCDA11B6B393000CF7BB /* NSDate+ISO8601FormatExtensions.m in Sources */,
+				4807FE3511B8045C000CF7BB /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,7 +528,7 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				RUN_CLANG_STATIC_ANALYZER = YES;
+				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;

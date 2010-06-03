@@ -12,6 +12,7 @@
 			<Result>
 				<Source>
 					<Actor>
+						<ActorObjectID><!-- DEVICEGUID DEVICEGUID DEVICEGUID DEVICEGUID DEVICEGUID --></ActorObjectID>
 						<ActorID><!-- USERNAME USERNAME USERNAME USERNAME USERNAME --></ActorID>
 						<ActorRole>
 							<Text>Patient</Text>

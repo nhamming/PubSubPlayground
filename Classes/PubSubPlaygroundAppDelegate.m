@@ -7,22 +7,27 @@
 //
 
 #import "PubSubPlaygroundAppDelegate.h"
+#import "RootViewController.h"
 #import <CFNetwork/CFNetwork.h>
 #import "XMPP.h"
-#import "XMPPStream.h"
-#import "XMPPIQ+TelemonitoringPubSub.h"
+#import "XMPPRosterCoreDataStorage.h"
 
 @implementation PubSubPlaygroundAppDelegate
 @synthesize xmppStream;
+@synthesize xmppRoster;
+@synthesize xmppRosterStorage;
 @synthesize window;
 
 #pragma mark -
 - (void)dealloc {
 	[xmppStream removeDelegate:self];
+	[xmppRoster removeDelegate:self];
 	[xmppStream disconnect];
 	[xmppStream release];
+	[xmppRoster release];
 	[password release];
-    [window release];
+    [navigationController release];
+	[window release];
     [super dealloc];
 }
 
@@ -30,6 +35,13 @@
 	//setup the stream
 	xmppStream = [[XMPPStream alloc] init];
 	[xmppStream addDelegate:self];
+
+	//setup the roster
+	xmppRosterStorage = [[XMPPRosterCoreDataStorage alloc] init];
+	xmppRoster = [[XMPPRoster alloc] initWithStream:xmppStream rosterStorage:xmppRosterStorage];
+	[xmppRoster addDelegate:self];
+	[xmppRoster setAutoRoster:YES];
+	
 	[xmppStream setHostName:@"jabber.telemonitoring.ca"];
 	[xmppStream setHostPort:5222];
 	[xmppStream setMyJID:[XMPPJID jidWithString:@"device@jabber.telemonitoring.ca"]];
@@ -39,22 +51,11 @@
 	if (![xmppStream connect:&error]) {
 		NSLog(@"Error connecting publisher stream: %@", error);
 	}
-	
+
+	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
 	
 	return YES;
-}
-
-- (IBAction) sendButtonPressed {
-
-	XMPPIQ *pubSubTest = [XMPPIQ pubSubTest];
-	
-	if ([self.xmppStream isConnected]) {
-		NSLog(@"sending IQ");
-		[self.xmppStream sendElement:pubSubTest];
-	} else {
-		NSLog(@"the stream is not connected");
-	}
 }
 
 #pragma mark -
